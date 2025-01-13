@@ -1,0 +1,292 @@
+@import "../../common/styles/variables.scss";
+
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 5px 20px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 0px 0px 10px 10px;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  height: 70px;
+  .appIconSection {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    max-width: 400px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .appIcon {
+    height: 64px;
+
+    @media (max-width: 780px) {
+      height: 40px;
+    }
+
+    @media (max-width: 440px) {
+      display: none;
+    }
+  }
+
+  .hamburger {
+    display: none;
+
+    @media (max-width: 440px) {
+      display: block;
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  .appIconMobile {
+    display: none;
+    @media (max-width: 780px) {
+      display: block;
+      width: 82.59px;
+      height: 20px;
+    }
+  }
+
+  .iconsContainer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-right: 1px solid #d9d9d9;
+    padding-right: 25px;
+    margin-right: 20px;
+    height: 30px;
+  }
+
+  .iconBlock {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    border-bottom: 3px solid transparent;
+  }
+
+  .activeIcon {
+    border-bottom: 3px solid #1859b4;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 70px;
+  }
+
+  .profileSection {
+    display: flex;
+    visibility: hidden;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+    justify-content: flex-end;
+
+    .profileIcon {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      margin-right: 8px;
+    }
+
+    .profileDropdownButton {
+      background-color: #fff;
+      text-align: center;
+      border: unset;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+
+  .mahatriaDots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mahatriaDotsLogo {
+    width: 62px;
+    height: 14px;
+
+    @media (max-width: 780px) {
+      display: none;
+    }
+  }
+
+  .mahatriaDotsLogoMobile {
+    display: none;
+
+    @media (max-width: 780px) {
+      display: block;
+      margin-left: 10px;
+      width: 50px;
+      height: 10px;
+      gap: 10px;
+      margin-left: 0px;
+      background-color: white;
+    }
+  }
+
+  @media (max-width: 780px) {
+    height: 50px;
+    width: 100%;
+  }
+}
+
+.button1 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  text-align: center;
+  color: #1859b4;
+  background: none;
+  max-height: 40px;
+  background-color: white;
+  background-image: none !important;
+}
+
+.logOut {
+  max-width: 400px;
+  align-items: end;
+  width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  text-align: center;
+  border: unset;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+
+  .containerNames {
+    color: $darkBlue;
+    text-transform: capitalize;
+    text-align: left;
+
+    .userName {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0px;
+      line-height: 24px;
+    }
+
+    .roleName {
+      margin: 0px;
+      line-height: 24px;
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+
+  .profile {
+    width: 50px;
+    height: 50px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .logout {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .verticalLine {
+    height: 24px;
+    border-left: 1px solid #d9d9d9;
+  }
+}
+
+@media (max-width: 780px) {
+  .profile {
+    display: none;
+  }
+}
+
+.timerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabs {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  color: #051B46;
+  font-size: 16px;
+  font-weight: 400;
+
+  .tab {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 70px;
+    margin-right: 15px;
+    @media (max-width: 780px) {
+      height: 50px;
+    }
+
+    .mySpaceIcon {
+      width: 28px;
+      height: 28px;
+
+      @media (max-width: 780px) {
+        width: 23px;
+        height: 23px;
+      }
+
+      @media (max-width: 440px) {
+        display: none;
+      }
+    }
+  }
+
+  .separator {
+    width: 1px;
+    height: 24px;
+    background-color: #d9d9d9;
+
+    @media (max-width: 440px) {
+      display: none;
+    }
+  }
+
+  .activeTab {
+    border-bottom: 2px solid #0e3c81;
+
+    @media (max-width: 440px) {
+      border-bottom: unset;
+    }
+  }
+}
+
+.separator {
+  width: 1px;
+  height: 24px;
+  background-color: #bebebe;
+}

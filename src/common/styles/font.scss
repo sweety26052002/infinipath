@@ -1,0 +1,15 @@
+// declare all custom fonts here
+// check below example
+
+@font-face {
+  font-family: "NatoSans-Regular";
+  src: url("../../assets/fonts/NotoSans-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "NotoSans-Bold";
+  src: url("../../assets/fonts/NotoSans-SemiBold.ttf");
+  font-style: normal;
+  font-weight: 600;
+}

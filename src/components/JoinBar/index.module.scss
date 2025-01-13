@@ -1,0 +1,72 @@
+// .barChartClass {
+//     position: relative;
+//     width: 500px;
+//     height: 500px;
+//     margin: 20px auto;
+  
+//     canvas {
+//       width: 100% !important;
+//       height: 100% !important;
+//     }
+//   }
+
+// .barChartClass {
+//   position: relative;
+//   width: 500px;
+//   height: 300px; // Adjust height for horizontal layout
+//   margin: 20px auto;
+//   background-color: #f9f9f9; // Light background for chart area
+//   padding: 20px;
+//   border-radius: 8px;
+//   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+
+//   h2 {
+//     font-size: 18px;
+//     text-align: center;
+//     margin-bottom: 10px;
+//     font-weight: bold;
+//   }
+
+//   canvas {
+//     width: 100% !important;
+//     height: 100% !important;
+//   }
+// }
+
+
+.barChartClass {
+    position: relative;
+    width: 635px;
+    height: 220px;
+    margin-left: 32px;
+    border-radius: 8px;
+    box-shadow: 0px 12px 30px 0px #0000000A;
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    padding:20px;
+    display:flex;
+    align-items: start;
+    flex-direction: column;
+  
+    h2 {
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+  
+  .chartTitle{
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: start;
+  align-self: flex-start;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  }

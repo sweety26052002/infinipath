@@ -1,0 +1,119 @@
+pipeline {
+    agent any
+    environment {
+        SONARQUBE_PATH = '/var/lib/jenkins/tools/sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner -Dsonar.projectKey=InfiniPath-FrontendWeb-Dev -Dsonar.sources=./'
+        GOOGLE_CHAT_LINK = 'https://chat.googleapis.com/v1/spaces/AAAA6Wtz7Xg/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=UcaW1-lHiYQtM06nI_Ng6nxuBdpI44N6cYyrpuzeG4k'
+    }
+    stages {
+        stage('get_commit_msg') {
+            steps {
+                script {
+                    env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+                    GIT_COMMIT_EMAIL = sh (
+                        script: 'git --no-pager show -s --format=\'%ae\'',
+                        returnStdout: true
+                    ).trim()
+                    echo "Git committer email: ${GIT_COMMIT_EMAIL}"
+                    echo "${GIT_COMMIT_MSG}"
+                }
+            }
+        }
+        stage('SonarScan') {
+            steps {
+                script {
+                    nodejs('Ravelation') {
+                        withSonarQubeEnv('Sonar') {
+                            sh "${env.SONARQUBE_PATH}"
+                        }
+                    }
+                }
+            }
+        }
+        stage('Quality Gate') {
+            steps {
+                script {
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK') {
+                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    }
+                }
+            }
+        }
+        // stage('Tests') {
+        //     steps {
+        //         script {
+        //             try {
+        //                 nodejs('Ravelation') {
+        //                     echo 'Testing'
+        //                     sh 'npm run test'
+        //                 }
+        //             } catch (Exception e) {
+        //                 echo 'Test cases failed!!'
+        //                 echo "Error message: ${e.toString()}"
+        //             }
+        //         }
+        //     }
+        // }
+        stage('Lint Check') {
+            steps {
+                script {
+                    // try {
+                    nodejs('Ravelation') {
+                        echo 'Linting'
+                        sh 'npm install eslint --force'
+                        sh 'npm run lint'
+                        // sh 'npm run format'
+                    }
+                    // } catch (Exception f) {
+                    //     echo 'Lint checks failed!'
+                    //     echo "Error message: ${f.toString()}"
+                    // }
+                }
+            }
+        }
+        stage('Setup Environment variables') {
+            steps {
+                script {
+                    sh 'aws s3 cp s3://allenvvariables/infinipath/frontend/dev.env ./.env --profile lambda-deploy-mumbai'
+                }
+            }
+        }
+        stage('build') {
+            steps {
+                nodejs('Ravelation') {
+                    echo 'building'
+                    sh 'npm cache clean --force'
+                    sh 'npm i @babel/runtime --force'
+                    sh 'npm i react-lottie --force'
+                    sh 'npm install --force'
+                    script {
+                        echo "Dev Build"
+                        sh 'npm run build'
+                    }
+                }
+            }
+        }
+        stage('deployment') {
+            steps {
+                script {
+                    sh 'aws s3 cp ./build s3://infinipath-dev-frontendbucket --recursive'
+                    sh 'aws cloudfront create-invalidation --distribution-id E2MXCJDK6OXKRX --paths "/*"'
+                    echo 'Deployment Success'
+                }
+            }
+        }
+    }
+    post {
+        success {
+            script {
+                googlechatnotification   message: "Project Name: ${JOB_NAME} Build ${BUILD_NUMBER} with commit : ${GIT_COMMIT_MSG} , Git committer email: ${GIT_COMMIT_EMAIL} from Branch ${GIT_BRANCH} on Environment dev was successfull. Check output at https://infinipdev.divami.com", url: "${GOOGLE_CHAT_LINK}";
+            }
+        }
+        failure {
+            googlechatnotification   message: "Project Name: ${JOB_NAME} Build ${BUILD_NUMBER} with commit : ${GIT_COMMIT_MSG} , Git committer email: ${GIT_COMMIT_EMAIL} from Branch ${GIT_BRANCH} on Environment dev has Failed: Check output logs at  ${RUN_DISPLAY_URL}", url: "${GOOGLE_CHAT_LINK}"
+        }
+        always {
+            cleanWs()
+        }
+    }
+}

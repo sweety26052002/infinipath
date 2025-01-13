@@ -1,0 +1,53 @@
+@import "../../styles/variables.scss";
+
+.dashboardHeader {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 40px 0px 16px 0px;
+    height: 40px;
+}
+
+.heading {
+    font-size: 17px;
+    font-weight: 600;
+    color: $darkBlue;
+}
+
+.iconsBlock {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+}
+.search {
+    border: 1px solid #c1c4c5;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 5px 15px 5px 5px;
+
+    span {
+        cursor: pointer;
+    }
+}
+
+.searchInput {
+    width: 450px;
+    padding: 5px 10px;
+    border: none;
+    color: $darkBlue;
+}
+
+.searchInput:focus {
+    border: none;
+    outline: none;
+}
+
+.filter {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}

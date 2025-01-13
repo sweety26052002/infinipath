@@ -1,0 +1,73 @@
+@import "../../common/styles/variables.scss";
+
+.container {
+  position: relative;
+  top: 56px;
+  padding: 32px;
+  box-shadow:
+    0 -4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 -2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.subHeadingDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.titleHeading {
+  font-size: 18px;
+  font-weight: 600;
+  color: $darkBlue;
+  margin: 0px;
+  text-align: left;
+}
+
+.registrationCard {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+.registerStatus {
+  font-size: 18px;
+  font-weight: 600;
+  color: $darkBlue;
+  margin: 0px;
+  text-align: left;
+}
+.viewAll {
+  padding-top: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  color: $darkBlue;
+  margin: 0px;
+  text-align: left;
+}
+
+.upComingSessions,
+.completedSessions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+.registerCardWidth {
+  width: 400px;
+}
+
+.noMeetingText {
+  font-size: 18px;
+  // font-weight: 600;
+  color: $darkBlue;
+  margin: 0px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+}
